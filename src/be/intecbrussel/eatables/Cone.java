@@ -1,6 +1,5 @@
 package be.intecbrussel.eatables;
 
-import be.intecbrussel.sellers.IceCreamSalon;
 
 import java.util.Arrays;
 

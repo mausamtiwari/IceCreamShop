@@ -14,44 +14,46 @@ public class IceCreamCar implements IceCreamSeller {
     public IceCreamCar(PriceList priceList, Stock stock) {
         this.priceList = priceList;
         this.stock = stock;
-        this.profit = 0.0;
+        this.profit = getProfit();
     }
 
 
     private Cone prepareCone(Cone.Flavor[] balls) {
-        // Checks of there is stock of cones and balls.
+        // Check if there are enough cones and balls in stock
         if (stock.getCones() > 0 && stock.getBalls() > 0) {
-            // Checks if there is enough stock of balls. If there's  stock of balls updates stock and creates cone.
-            if (stock.getBalls() >= balls.length) {
-                profit += balls.length * priceList.getBallPrice();
-                stock.setBalls(getStock().getBalls() - balls.length);
-                stock.setCones(getStock().getCones() - 1);
-                System.out.println("Balls stock: " + stock.getBalls());
-                System.out.println("Cones stock: " + stock.getCones());
-                return new Cone(balls);
-            } else { // If there is insufficient balls, calculates profit with available balls and updates cone's stock.
-                profit += balls.length * priceList.getBallPrice();
-                stock.setBalls(getStock().getBalls()- balls.length);
-                stock.setCones(getStock().getCones() - 1);
-                System.out.println("Balls stock: " + stock.getBalls());
-                System.out.println("Cones stock: " + stock.getCones());
-                System.out.println("Balls out of stock.");
-                return new Cone(Arrays.copyOf(balls, stock.getBalls()));
+            int availableBalls = Math.min(stock.getBalls(), balls.length);
+            // Check if there are enough cones to create a new cone
+            if (stock.getCones() > 0) {
+                // Decrease the stock of balls and cones
+                stock.setBalls(stock.getBalls() - availableBalls);
+                stock.setCones(stock.getCones() - 1);
+                // Return a new cone with the available balls
+                return new Cone(Arrays.copyOf(balls, availableBalls));
             }
         }
-        System.out.println("Cones out of stock.");
+        // Print appropriate messages for stock shortage
+        if (stock.getCones() == 0) {
+            System.out.println("Cones out of stock.");
+        } else if (stock.getBalls() == 0) {
+            System.out.println("Balls out of stock.");
+        }
         return null;
     }
 
     @Override
     public Cone orderCone(Cone.Flavor[] balls) {
-        return prepareCone(balls);
+        // Call prepareCone to handle cone preparation
+        Cone preparedCone = prepareCone(balls);
+        // Calculate profit if a cone is successfully prepared
+        if (preparedCone != null) {
+            profit += balls.length * priceList.getBallPrice();
+        }
+        return preparedCone;
     }
 
 
     private IceRocket prepareRocket() {
         if (stock.getIceRockets() > 0) {
-            profit += priceList.getRocketPrice();
             stock.setIceRockets(getStock().getIceRockets() - 1);
             return new IceRocket();
         } else {
@@ -62,13 +64,16 @@ public class IceCreamCar implements IceCreamSeller {
 
     @Override
     public IceRocket orderIceRocket() {
-        return prepareRocket();
+        IceRocket preparedRocket = prepareRocket();
+        if (preparedRocket != null) {
+            profit += priceList.getRocketPrice();
+        }
+        return preparedRocket;
     }
 
 
     private Magnum prepareMagnum(Magnum.MagnumType type) {
         if (stock.getMagni() > 0) {
-            profit += priceList.getMagnumPrice(type);
             stock.setMagni(getStock().getMagni() - 1);
             return new Magnum(type);
         } else {
@@ -79,9 +84,12 @@ public class IceCreamCar implements IceCreamSeller {
 
     @Override
     public Magnum orderMagnum(Magnum.MagnumType type) {
-        return prepareMagnum(type);
+        Magnum preparedMagnum = prepareMagnum(type);
+        if (preparedMagnum != null) {
+            profit += priceList.getMagnumPrice(type);
+        }
+        return preparedMagnum;
     }
-
 
     @Override
     public double getProfit() {

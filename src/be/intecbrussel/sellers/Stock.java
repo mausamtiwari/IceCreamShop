@@ -1,9 +1,5 @@
 package be.intecbrussel.sellers;
 
-import be.intecbrussel.eatables.Cone;
-
-import java.util.Arrays;
-
 public class Stock {
     int iceRockets;
     int cones;
