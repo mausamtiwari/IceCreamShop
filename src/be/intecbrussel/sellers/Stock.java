@@ -13,6 +13,7 @@ public class Stock {
         this.balls = balls;
         this.magni = magni;
 
+        // Prints initial stock.
         System.out.println("****************** Initial Stocks *****************");
         System.out.println("IceRocket stock: " + getIceRockets());
         System.out.println("Cones stock: " + getCones());

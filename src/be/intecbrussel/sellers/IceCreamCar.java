@@ -1,6 +1,7 @@
 package be.intecbrussel.sellers;
 
 import be.intecbrussel.eatables.Cone;
+import be.intecbrussel.eatables.Eatable;
 import be.intecbrussel.eatables.IceRocket;
 import be.intecbrussel.eatables.Magnum;
 
@@ -10,6 +11,7 @@ public class IceCreamCar implements IceCreamSeller {
     private final PriceList priceList;
     private final Stock stock;
     private double profit;
+
 
     public IceCreamCar(PriceList priceList, Stock stock) {
         this.priceList = priceList;
@@ -21,7 +23,7 @@ public class IceCreamCar implements IceCreamSeller {
     private Cone prepareCone(Cone.Flavor[] balls) {
         // Checks if there are enough cones and balls in stock.
         if (stock.getCones() > 0 && stock.getBalls() > 0) {
-            // Gets the smallest amount. If user asks for the balls more than it is in stock.
+            // Gets the smallest amount of balls. Handy if user asks for the balls more than it is in stock.
             int availableBalls = Math.min(stock.getBalls(), balls.length);
             // Check if there are enough cones to create a new cone.
             if (stock.getCones() > 0) {
@@ -33,9 +35,9 @@ public class IceCreamCar implements IceCreamSeller {
             }
         }
         // Prints the message if balls or cones are out of stock.
-        if (stock.getCones() == 0) {
+        if (stock.getCones() <= 0) {
             System.out.println("Cones out of stock.");
-        } else if (stock.getBalls() == 0) {
+        } else if (stock.getBalls() <= 0) {
             System.out.println("Balls out of stock.");
         }
         return null;
@@ -121,7 +123,7 @@ public class IceCreamCar implements IceCreamSeller {
         return stock;
     }
 
-    // Gets stock of individual elements.
+    // Gets stock of individual elements to display the final stock .
     public void iceRocketStock() {
         System.out.println("IceRocket stock: " + getStock().getIceRockets());
     }
@@ -136,5 +138,18 @@ public class IceCreamCar implements IceCreamSeller {
 
     public void magnumStock() {
         System.out.println("Magnum stock: " + getStock().getMagni());
+    }
+
+    public void orderedRocket() {
+
+        // System.out.println("Totaal IceRockets ordered :" + (stocks.getIceRockets() - getStock().getIceRockets()));
+    }
+
+    public void orderedCone() {
+        // System.out.println("Totaal Cones ordered :" + (stocks.getCones() - getStock().getCones()));
+    }
+
+    public void orderedMagni() {
+        //System.out.println("Totaal Magni ordered :" + (stocks.getMagni() - getStock().getMagni()));
     }
 }

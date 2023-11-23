@@ -14,7 +14,7 @@ public class IceCreamApp {
         // PriceList instantiated.
         PriceList priceList = new PriceList(3.0, 2.5, 2.0);
 
-        // IceSalon instantiated with price list.
+        // IceCreamSalon instantiated with price list.
         IceCreamSalon iceCreamSalon = new IceCreamSalon(priceList);
 
         // Eatables of size 15 created. Where we add the orders from IceCreamSalon class.
@@ -39,6 +39,6 @@ public class IceCreamApp {
 
         // Displays profit.
         System.out.println();
-        System.out.println("Total profit: " + iceCreamSalon.getProfit());
+        System.out.println("Total profit: €" + iceCreamSalon.getProfit());
     }
 }
