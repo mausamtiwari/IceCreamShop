@@ -13,9 +13,9 @@ public class Stock {
         this.balls = balls;
         this.magni = magni;
 
-        // Prints initial stock.
+        // Prints initial stocks of the elements.
         System.out.println("****************** Initial Stocks *****************");
-        System.out.println("IceRocket stock: " + getIceRockets());
+        System.out.println("IceRockets stock: " + getIceRockets());
         System.out.println("Cones stock: " + getCones());
         System.out.println("Balls stock: " + getBalls());
         System.out.println("Magnum stock: " + getMagni());
@@ -23,6 +23,7 @@ public class Stock {
         System.out.println();
     }
 
+    // Getters and setters.
     public int getIceRockets() {
         return iceRockets;
     }

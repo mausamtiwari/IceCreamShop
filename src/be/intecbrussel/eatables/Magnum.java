@@ -1,7 +1,7 @@
 package be.intecbrussel.eatables;
 
 public class Magnum implements Eatable {
-   private MagnumType type;
+    private MagnumType type;
 
     public Magnum() {
 
@@ -18,7 +18,7 @@ public class Magnum implements Eatable {
     // Overridden from Eatable interface and gets called in the main to print the type of Magnum ordered.
     @Override
     public void eat() {
-        System.out.println("Ordered " + getType());
+        System.out.println("Ordered " + getType() + ".");
     }
 
     // Enum with types of Magnum. Used in Icecream Salon and IceCream Car to order and prepare Magnum
