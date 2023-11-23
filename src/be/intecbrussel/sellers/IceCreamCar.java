@@ -1,7 +1,6 @@
 package be.intecbrussel.sellers;
 
 import be.intecbrussel.eatables.Cone;
-import be.intecbrussel.eatables.Eatable;
 import be.intecbrussel.eatables.IceRocket;
 import be.intecbrussel.eatables.Magnum;
 
@@ -25,20 +24,20 @@ public class IceCreamCar implements IceCreamSeller {
         if (stock.getCones() > 0 && stock.getBalls() > 0) {
             // Gets the smallest amount of balls. Handy if user asks for the balls more than it is in stock.
             int availableBalls = Math.min(stock.getBalls(), balls.length);
-            // Check if there are enough cones to create a new cone.
+            // Checks if there are enough cones to create a new cone.
             if (stock.getCones() > 0) {
-                // Decrease the stock of balls and cones each time Cones is prepared.
+                // Decreases the stock of balls and cones each time Cones is prepared.
                 stock.setBalls(stock.getBalls() - availableBalls);
                 stock.setCones(stock.getCones() - 1);
-                // Return a new cone with the available balls.
+                // Returns a new cone with the available balls.
                 return new Cone(Arrays.copyOf(balls, availableBalls));
             }
         }
         // Prints the message if balls or cones are out of stock.
         if (stock.getCones() <= 0) {
-            System.out.println("Cones out of stock.");
+            System.out.println("Cones out of stock. No more icecream.");
         } else if (stock.getBalls() <= 0) {
-            System.out.println("Balls out of stock.");
+            System.out.println("Balls out of stock. No more icecream.");
         }
         return null;
     }
@@ -66,7 +65,7 @@ public class IceCreamCar implements IceCreamSeller {
             return new IceRocket();
         } else {
             // Prints if IceRockets out of stock.
-            System.out.println("IceRocket out of stock.");
+            System.out.println("IceRocket out of stock. No more icecream");
             return null;
         }
     }
@@ -94,7 +93,7 @@ public class IceCreamCar implements IceCreamSeller {
             return new Magnum(type);
         } else {
             // Prints if magnum is out of stock.
-            System.out.println("Magnum out of stock.");
+            System.out.println("Magnum out of stock. No more icecream.");
             return null;
         }
     }
@@ -123,33 +122,21 @@ public class IceCreamCar implements IceCreamSeller {
         return stock;
     }
 
-    // Gets stock of individual elements to display the final stock .
-    public void iceRocketStock() {
-        System.out.println("IceRocket stock: " + getStock().getIceRockets());
+    // Retrieves final stock of every element.
+    public int finalIceRocketStock() {
+        return getStock().getIceRockets();
     }
 
-    public void conesStock() {
-        System.out.println("Cones stock: " + getStock().getCones());
+    public int finalConesStock() {
+        return getStock().getCones();
     }
 
-    public void ballsStock() {
-        System.out.println("Balls stock: " + getStock().getBalls());
+    public int finalBallsStock() {
+        return getStock().getBalls();
     }
 
-    public void magnumStock() {
-        System.out.println("Magnum stock: " + getStock().getMagni());
+    public int finalMagniStock() {
+        return getStock().getMagni();
     }
 
-    public void orderedRocket() {
-
-        // System.out.println("Totaal IceRockets ordered :" + (stocks.getIceRockets() - getStock().getIceRockets()));
-    }
-
-    public void orderedCone() {
-        // System.out.println("Totaal Cones ordered :" + (stocks.getCones() - getStock().getCones()));
-    }
-
-    public void orderedMagni() {
-        //System.out.println("Totaal Magni ordered :" + (stocks.getMagni() - getStock().getMagni()));
-    }
 }
