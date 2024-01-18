@@ -11,6 +11,9 @@ public class IceCreamCar implements IceCreamSeller {
     private Stock stock;
     private double profit;
 
+    public IceCreamCar(){
+
+    }
 
     public IceCreamCar(PriceList priceList, Stock stock) {
         this.priceList = priceList;

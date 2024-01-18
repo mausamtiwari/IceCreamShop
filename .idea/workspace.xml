@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0232bc89-c424-430f-a7f2-63e1738d964d" name="Changes" comment="" />
+    <list default="true" id="0232bc89-c424-430f-a7f2-63e1738d964d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/intecbrussel/sellers/IceCreamCar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/sellers/IceCreamCar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/IceCreamCarTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IceCreamCarTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/be/intecbrussel/sellers/IceCreamCar.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/be/intecbrussel/sellers/IceCreamCar.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,6 +75,45 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="be.intecbrussel.sellers" />
     </key>
+  </component>
+  <component name="RunManager" selected="JUnit.IceCreamCarTest.orderConeTest (1)">
+    <configuration name="IceCreamCarTest.orderConeTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IceCreamShop" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="IceCreamCarTest" />
+      <option name="METHOD_NAME" value="orderConeTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IceCreamCarTest.orderConeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IceCreamShop" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="IceCreamCarTest" />
+      <option name="METHOD_NAME" value="orderConeTest([Lbe.intecbrussel.eatables.Cone$Flavor;)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IceCreamCarTest.prepareConeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IceCreamShop" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="IceCreamCarTest" />
+      <option name="METHOD_NAME" value="prepareConeTest([Lbe.intecbrussel.eatables.Cone$Flavor;)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.IceCreamCarTest.orderConeTest (1)" />
+        <item itemvalue="JUnit.IceCreamCarTest.orderConeTest" />
+        <item itemvalue="JUnit.IceCreamCarTest.prepareConeTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
