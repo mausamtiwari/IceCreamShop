@@ -3,7 +3,7 @@ package be.intecbrussel.sellers;
 import be.intecbrussel.eatables.*;
 
 public class IceCreamSalon implements IceCreamSeller {
-    private final PriceList priceList;
+    private  PriceList priceList;
     private double totalProfit;
 
 

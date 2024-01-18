@@ -7,8 +7,8 @@ import be.intecbrussel.eatables.Magnum;
 import java.util.Arrays;
 
 public class IceCreamCar implements IceCreamSeller {
-    private final PriceList priceList;
-    private final Stock stock;
+    private PriceList priceList;
+    private Stock stock;
     private double profit;
 
 
