@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0232bc89-c424-430f-a7f2-63e1738d964d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/intecbrussel/sellers/IceCreamCar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/intecbrussel/sellers/IceCreamCar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/IceCreamCarTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IceCreamCarTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/be/intecbrussel/sellers/IceCreamCar.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/be/intecbrussel/sellers/IceCreamCar.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +74,7 @@
       <recent name="be.intecbrussel.sellers" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.IceCreamCarTest.orderConeTest (1)">
+  <component name="RunManager" selected="JUnit.IceCreamCarTest.orderConeTest">
     <configuration name="IceCreamCarTest.orderConeTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IceCreamShop" />
       <option name="PACKAGE_NAME" value="" />
@@ -97,11 +95,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IceCreamCarTest.prepareConeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IceCreamCarTest.orderIceRocketTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IceCreamShop" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="IceCreamCarTest" />
-      <option name="METHOD_NAME" value="prepareConeTest([Lbe.intecbrussel.eatables.Cone$Flavor;)" />
+      <option name="METHOD_NAME" value="orderIceRocketTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IceCreamCarTest.orderInvalidMagnumTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IceCreamShop" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="IceCreamCarTest" />
+      <option name="METHOD_NAME" value="orderInvalidMagnumTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IceCreamCarTest.orderMagnumTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IceCreamShop" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="IceCreamCarTest" />
+      <option name="METHOD_NAME" value="orderMagnumTest(be.intecbrussel.eatables.Magnum$MagnumType)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -109,9 +127,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.IceCreamCarTest.orderConeTest (1)" />
         <item itemvalue="JUnit.IceCreamCarTest.orderConeTest" />
-        <item itemvalue="JUnit.IceCreamCarTest.prepareConeTest" />
+        <item itemvalue="JUnit.IceCreamCarTest.orderIceRocketTest" />
+        <item itemvalue="JUnit.IceCreamCarTest.orderMagnumTest" />
+        <item itemvalue="JUnit.IceCreamCarTest.orderInvalidMagnumTest" />
+        <item itemvalue="JUnit.IceCreamCarTest.orderConeTest (1)" />
       </list>
     </recent_temporary>
   </component>
