@@ -120,6 +120,10 @@ public class IceCreamCar implements IceCreamSeller {
         return profit;
     }
 
+    public void setProfit(double profit) {
+        this.profit = profit;
+    }
+
     // Gets stock
     public Stock getStock() {
         return stock;

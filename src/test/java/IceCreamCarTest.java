@@ -10,20 +10,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.stream.Stream;
+
 
 public class IceCreamCarTest {
 
-    private PriceList priceList;
-    private Stock stock;
-    private double profit;
-    private IceCreamCar iceCreamCar;
-
-    {
-        iceCreamCar = new IceCreamCar();
-    }
     @ParameterizedTest
-    @MethodSource("coneOrders")
-    void orderConeTest(Cone.Flavor[] flavors) {
+    @MethodSource("flavorArguments")
+    void orderConeTest(Cone.Flavor[] flavors, double expectedProfit) {
         PriceList priceList = new PriceList(3.0, 2.5, 2.0);
         Stock stock = new Stock(10, 10, 20, 15);
         IceCreamCar iceCreamCar = new IceCreamCar(priceList, stock);
@@ -31,8 +25,19 @@ public class IceCreamCarTest {
         Cone orderedCone = iceCreamCar.orderCone(flavors);
 
         Assertions.assertNotNull(orderedCone);
-        Assertions.assertEquals(flavors.length * priceList.getBallPrice(), iceCreamCar.getProfit());
+        Assertions.assertEquals(expectedProfit, iceCreamCar.getProfit());
     }
+
+    private static Stream<Arguments> flavorArguments() {
+        return Stream.of(
+                Arguments.of(new Cone.Flavor[]{Cone.Flavor.STRAWBERRY, Cone.Flavor.BANANA}, 2 * 3.0),
+                Arguments.of(new Cone.Flavor[]{Cone.Flavor.VANILLA, Cone.Flavor.CHOCOLATE, Cone.Flavor.LEMON}, 3 * 3.0),
+                Arguments.of(new Cone.Flavor[]{}, 0.0),
+                Arguments.of(new Cone.Flavor[]{Cone.Flavor.STRAWBERRY}, 1 * 3.0),
+                Arguments.of(new Cone.Flavor[]{Cone.Flavor.STRAWBERRY, null, Cone.Flavor.BANANA}, 2 * 3.0)
+        );
+    }
+
 
     @Test
     void orderIceRocketTest() {
@@ -46,27 +51,107 @@ public class IceCreamCarTest {
         Assertions.assertEquals(priceList.getRocketPrice(), iceCreamCar.getProfit());
     }
 
+
     @ParameterizedTest
-    void orderMagnumTest(Magnum.MagnumType magnumType) {
+    @MethodSource("magnumOrders")
+    void orderMagnumTest(Magnum.MagnumType magnumType, double initialProfit, double expectedProfit) {
         PriceList priceList = new PriceList(3.0, 2.5, 2.0);
         Stock stock = new Stock(10, 10, 20, 15);
         IceCreamCar iceCreamCar = new IceCreamCar(priceList, stock);
+        iceCreamCar.setProfit(initialProfit); // Set initial profit
 
         Magnum orderedMagnum = iceCreamCar.orderMagnum(magnumType);
 
         Assertions.assertNotNull(orderedMagnum);
-        Assertions.assertEquals(priceList.getMagnumPrice(magnumType), iceCreamCar.getProfit());
+        double magnumPrice = priceList.getMagnumPrice(magnumType);
+        Assertions.assertEquals(initialProfit + magnumPrice, iceCreamCar.getProfit(), 0.001);
     }
 
-    @Test
-    void orderInvalidMagnumTest() {
+    private static Stream<Arguments> magnumOrders() {
+        return Stream.of(
+                Arguments.of(Magnum.MagnumType.ALPINENUTS, 0.0, 0.06),
+                Arguments.of(Magnum.MagnumType.MILKCHOCOLATE, 0.0, 0.044),
+                Arguments.of(Magnum.MagnumType.WHITECHOCOLATE, 0.0, 0.056),
+                Arguments.of(Magnum.MagnumType.ROMANTICSTRAWBERRIES, 0.0, 0.08),
+                Arguments.of(Magnum.MagnumType.BLACKCHOCOLATE, 0.0, 0.08)
+        );
+    }
+
+
+    @ParameterizedTest
+    @MethodSource("invalidConeOrders")
+    void invalidOrderConeTest(Cone.Flavor[] flavors) {
         PriceList priceList = new PriceList(3.0, 2.5, 2.0);
-        Stock stock = new Stock(0, 0, 0, 0);
+        Stock stock = new Stock(10, 10, 20, 15);
         IceCreamCar iceCreamCar = new IceCreamCar(priceList, stock);
 
-        Magnum orderedMagnum = iceCreamCar.orderMagnum(Magnum.MagnumType.BLACKCHOCOLATE);
+        Cone orderedCone = iceCreamCar.orderCone(flavors);
+
+        Assertions.assertNull(orderedCone);
+        Assertions.assertEquals(0.0, iceCreamCar.getProfit());
+    }
+
+    private static Stream<Arguments> invalidConeOrders() {
+        return Stream.of(
+                Arguments.of((Object) null),
+                Arguments.of((Object) new Cone.Flavor[]{}),
+                Arguments.of((Object) new Cone.Flavor[]{Cone.Flavor.MOKKA, null}),
+                Arguments.of((Object) new Cone.Flavor[]{Cone.Flavor.LEMON, Cone.Flavor.VANILLA, Cone.Flavor.LEMON}),
+                Arguments.of((Object) new Cone.Flavor[]{Cone.Flavor.STRACIATELLA, Cone.Flavor.BANANA, Cone.Flavor.STRACIATELLA}),
+                Arguments.of((Object) new Cone.Flavor[]{Cone.Flavor.VANILLA, Cone.Flavor.LEMON, Cone.Flavor.CHOCOLATE, Cone.Flavor.PISTACHE})
+
+
+        );
+    }
+
+
+    @ParameterizedTest
+    @MethodSource("invalidIceRocketOrders")
+    void invalidOrderIceRocketTest(double initialProfit) {
+        PriceList priceList = new PriceList(3.0, 2.5, 2.0);
+        Stock stock = new Stock(10, 10, 20, 15);
+        IceCreamCar iceCreamCar = new IceCreamCar(priceList, stock);
+        iceCreamCar.setProfit(initialProfit);
+
+        IceRocket orderedRocket = iceCreamCar.orderIceRocket();
+
+        Assertions.assertNull(orderedRocket);
+        Assertions.assertEquals(0.0, iceCreamCar.getProfit());
+    }
+
+    private static Stream<Arguments> invalidIceRocketOrders() {
+        return Stream.of(
+                Arguments.of(-1.0),
+                Arguments.of(Double.NaN),
+                Arguments.of(Double.POSITIVE_INFINITY),
+                Arguments.of(Double.NEGATIVE_INFINITY)
+        );
+    }
+
+
+    @ParameterizedTest
+    @MethodSource("invalidMagnumOrders")
+    void invalidOrderMagnumTest(Magnum.MagnumType magnumType, double initialProfit) {
+        PriceList priceList = new PriceList(3.0, 2.5, 2.0);
+        Stock stock = new Stock(10, 10, 20, 15);
+        IceCreamCar iceCreamCar = new IceCreamCar(priceList, stock);
+        iceCreamCar.setProfit(initialProfit);
+
+        Magnum orderedMagnum = iceCreamCar.orderMagnum(magnumType);
 
         Assertions.assertNull(orderedMagnum);
         Assertions.assertEquals(0.0, iceCreamCar.getProfit());
     }
+
+    private static Stream<Arguments> invalidMagnumOrders() {
+        return Stream.of(
+                Arguments.of(null, 0.0),
+                Arguments.of(Magnum.MagnumType.ALPINENUTS, -5.0),
+                Arguments.of(Magnum.MagnumType.MILKCHOCOLATE, Double.NaN),
+                Arguments.of(Magnum.MagnumType.ROMANTICSTRAWBERRIES, Double.POSITIVE_INFINITY),
+                Arguments.of(Magnum.MagnumType.WHITECHOCOLATE, Double.NEGATIVE_INFINITY)
+        );
+    }
+
+
 }
